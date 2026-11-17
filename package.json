@@ -1,0 +1,62 @@
+{
+  "name": "cpp-code-checker",
+  "displayName": "C++ Code Checker",
+  "description": "A lightweight static checker for common beginner C++ mistakes.",
+  "version": "1.0.0",
+  "publisher": "student",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:cpp",
+    "onCommand:cppCodeChecker.analyze"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "cppCodeChecker.analyze",
+        "title": "C++ Code Checker: Analyze Current File"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "cppCodeChecker.analyze",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a",
+        "when": "editorTextFocus && editorLangId == cpp"
+      }
+    ],
+    "configuration": {
+      "title": "C++ Code Checker",
+      "properties": {
+        "cppCodeChecker.checkOnChange": {
+          "type": "boolean",
+          "default": true,
+          "description": "Analyze the document after editing."
+        },
+        "cppCodeChecker.maxLineLength": {
+          "type": "number",
+          "default": 100,
+          "minimum": 40,
+          "maximum": 300,
+          "description": "Maximum recommended line length."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@types/vscode": "^1.146.0",
+    "typescript": "^5.9.3"
+  }
+}
